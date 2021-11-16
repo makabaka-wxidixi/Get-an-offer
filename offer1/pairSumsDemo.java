@@ -88,4 +88,34 @@ public class pairSumsDemo {
         }
         return list;
     }
+
+    /**
+     * 方式二：双指针
+     * 思路：将数组排序，然后用两个指针来指向数组的首尾。当arr[left]+arr[right]=target时，满足条件。由于数组已经排好序了，那么
+     * 当arr[left]+arr[right]>target时，向左移动右指针，使arr[left]+arr[right]更接近target。反之同理。
+     * 时间复杂度：On
+     * 空间复杂度：O1
+     *
+     * @param nums   传入的数组
+     * @param target 目标值
+     * @return 每两个数为一组进行返回
+     */
+    public List<List<Integer>> pairSums3(int[] nums, int target) {
+        //排序数组
+        Arrays.sort(nums);
+        List<List<Integer>> list = new ArrayList<>();
+        int left = 0, right = nums.length - 1;
+        while (left < right) {
+            if (nums[left] + nums[right] < target) {
+                left++;
+            } else if (nums[left] + nums[right] > target) {
+                right--;
+            } else {
+                list.add(Arrays.asList(nums[left], nums[right]));
+                left++;
+                right--;
+            }
+        }
+        return list;
+    }
 }
