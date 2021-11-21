@@ -83,6 +83,8 @@ public class buildTree {
 
     /*
     方式二：迭代
+    时间复杂度：On循环遍历前序数组，每次循环中的入栈或者出栈都是O1，因此总体是On
+    空间复杂度：On——利用到栈。当树为链表时，此时最差，为On，n是结点个数
     思路：
         前序遍历特点：第一个结点是根节点
                     后一个节点是前一个结点的左孩子，或者是前一个结点（或其某个祖先节点）的右孩子
@@ -100,6 +102,7 @@ public class buildTree {
         }
         //栈中放的节点都是没有判断过是否有右孩子的
         Stack<TreeNode> stack = new Stack<>();
+        //前序数组第一个就是根节点
         TreeNode root = new TreeNode(preorder[0]);
         stack.push(root);
         TreeNode node;
